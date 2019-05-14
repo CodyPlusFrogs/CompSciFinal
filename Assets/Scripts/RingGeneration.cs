@@ -15,9 +15,9 @@ public class RingGeneration : EditorWindow
         //this is the parent that we will instantiate all of the level under
         GameObject instantiateParent = GameObject.FindGameObjectWithTag("Ring Parent");
         //this object contains a bunch of cubes that will show us our path
-        GameObject levelPath = GameObject.FindGameObjectWithTag("Ring Path");
+        GameObject ringPath = GameObject.FindGameObjectWithTag("Ring Path");
         //get the transform
-        Transform ringPathTransform = levelPath.GetComponent<Transform>();
+        Transform ringPathTransform = ringPath.GetComponent<Transform>();
 
 
         //get the ring object from the resources folder
@@ -27,7 +27,7 @@ public class RingGeneration : EditorWindow
 
 
         //amount of spacing between rings
-        double spacing = 2;
+        double spacing = 80;
 
 
         //first we are going to make sure the spacing on the path is equal throughout

@@ -14,6 +14,9 @@ public class StaticGeneration : EditorWindow
     //all the possible buildings to instantiate
     private static GameObject[] allBuildings;
 
+    //the wall to be instantiated
+    private static GameObject wall;
+
     //the level image map
     private static Texture2D levelImageMap;
 
@@ -44,8 +47,13 @@ public class StaticGeneration : EditorWindow
         GameObject instantiateParent = GameObject.FindGameObjectWithTag("Level Parent");
         //this object contains a bunch of cubes that will show us our path
         GameObject levelPath = Resources.Load("prefabs/LevelPath") as GameObject;
+
         //get the transform
         Transform levelPathTransform = levelPath.GetComponent<Transform>();
+
+
+        //load the wall
+        wall = Resources.Load("prefabs/Wall") as GameObject;
 
 
         //tracks where we are on the level map image and incremenets as we go up in height, instantiating buildings accordingly
@@ -151,7 +159,15 @@ public class StaticGeneration : EditorWindow
 
         }
         
+        //instantiate the wall now
+        GameObject newWall = Instantiate(wall, location, rotation);
+        //now move it to spread them out
+        //newWall.transform.position += newWall.transform.right * 5
+        newWall.transform.Rotate(new Vector3(0, 90, 0));
+        //set the parent to the instantiateParent so we don't croud the scene
+        newWall.transform.parent = instantiateParent.transform;
         
+
     }
 
     /**

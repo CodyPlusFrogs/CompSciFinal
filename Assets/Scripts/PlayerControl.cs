@@ -22,6 +22,14 @@ public class PlayerControl : MonoBehaviour {
 
 
 
+    //player state data
+    public static playerStates playerState = playerStates.alive;
+    public enum playerStates
+    {
+        alive,
+        dead
+    }
+
     // Use this for initialization
     void Start () {
         //offsetCam = camera.position - playerBody.position;
@@ -32,7 +40,7 @@ public class PlayerControl : MonoBehaviour {
     void FixedUpdate () {
         savedLocations.Add(new LocationData(transform.GetChild(0).position, transform.GetChild(0).rotation));
 
-        if (savedLocations.Count > 2)
+        if (savedLocations.Count > 4)
         {
             savedLocations.RemoveAt(0);
         }
@@ -46,6 +54,21 @@ public class PlayerControl : MonoBehaviour {
         //camera.rotation = rotation;
         doBullets();
         playerControl();
+
+
+
+    }
+
+
+    //dead if we hit something
+    void OnCollisionEnter(Collision col)
+    {
+        killPlayer();
+    }
+
+    public static void killPlayer()
+    {
+        playerState = playerStates.dead;
     }
 
 
