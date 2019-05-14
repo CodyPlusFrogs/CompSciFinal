@@ -24,12 +24,9 @@ public class CameraFollow : MonoBehaviour
             Debug.Log((allLocationData[0] as LocationData).rotation);
 
             transform.position = (allLocationData[0] as LocationData).position;
-            transform.position += transform.right * 0;
+            transform.position += transform.right * 10;
         
             transform.rotation = (allLocationData[0] as LocationData).rotation;
         }
-
-        
-
     }
 }

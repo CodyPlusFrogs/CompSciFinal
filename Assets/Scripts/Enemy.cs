@@ -75,7 +75,7 @@ public class Enemy : MonoBehaviour {
         if(enemyState == enemyStates.fire)
         {
 
-            laser.SetActive(true);
+            //laser.SetActive(true);
 
             if (stageFinished)
             {
@@ -83,7 +83,8 @@ public class Enemy : MonoBehaviour {
             }
             harassPlayerMovement();
 
-            
+
+            fireAtPlayer();            
         }
 	}
 
@@ -170,9 +171,11 @@ public class Enemy : MonoBehaviour {
 
 
 
-
-
-
+    private void fireAtPlayer()
+    {
+        
+        GameManager.subtractPlayerHealth(0.001f);
+    }
 
 
     //inits vars once per state change

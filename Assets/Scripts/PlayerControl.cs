@@ -16,9 +16,11 @@ public class PlayerControl : MonoBehaviour {
     //all the saved locations
     public ArrayList savedLocations = new ArrayList();
 
-    public float movementSpeed = 1500.0f;
-    public float consistentMovement = 500.0f;
-    
+    public float movementSpeed = 500.0f;
+    public float rollTorque = 500.0f;
+    public float pullUpTorque = 500.0f;
+
+
 
     // Use this for initialization
     void Start () {
@@ -63,12 +65,12 @@ public class PlayerControl : MonoBehaviour {
     private void playerControl()
     {
         playerBody.GetComponent<Rigidbody>()
-            .AddRelativeTorque(new Vector3(Input.GetAxis("Horizontal") * 15, 0, 0));
+            .AddRelativeTorque(new Vector3(Input.GetAxis("Horizontal") * rollTorque, 0, 0));
 
         playerBody.GetComponent<Rigidbody>()
-            .AddRelativeTorque(new Vector3(0, 0, Input.GetAxis("Vertical") * 3.5f));
+            .AddRelativeTorque(new Vector3(0, 0, Input.GetAxis("Vertical") * pullUpTorque));
 
-        playerBody.GetComponent<Rigidbody>().AddRelativeForce(new Vector3(-consistentMovement, 0f, 0f));
+        playerBody.GetComponent<Rigidbody>().AddRelativeForce(new Vector3(-movementSpeed, 0f, 0f));
     }
 }
 
