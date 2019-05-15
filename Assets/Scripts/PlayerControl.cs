@@ -52,23 +52,28 @@ public class PlayerControl : MonoBehaviour {
         // the second argument, upwards, defaults to Vector3.up
         //Quaternion rotation = Quaternion.LookRotation(relativePos, Vector3.up);
         //camera.rotation = rotation;
-        doBullets();
-        playerControl();
-
-
-
+        if(playerState == playerStates.alive)
+        {
+            doBullets();
+            playerControl();
+        }
+        if(playerState == playerStates.dead)
+        {
+            
+            
+        }
+        
     }
 
 
-    //dead if we hit something
-    void OnCollisionEnter(Collision col)
-    {
-        killPlayer();
-    }
-
-    public static void killPlayer()
+    
+    //watches the player die
+    public void killPlayer()
     {
         playerState = playerStates.dead;
+        CameraFollow.watchPlayerDie();
+        playerBody.GetComponent<Rigidbody>().drag = 0;
+        playerBody.GetComponent<Rigidbody>().angularDrag = 0;
     }
 
 

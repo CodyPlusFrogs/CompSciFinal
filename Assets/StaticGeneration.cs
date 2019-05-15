@@ -142,8 +142,8 @@ public class StaticGeneration : EditorWindow
 
             //get the pixel color and choose the instantiate type
             if (thisPixel.r > 0.3f){buildingToInstantiate = 0;}
-            if (thisPixel.g > 0.3f) { buildingToInstantiate = 1; }
-            if (thisPixel.b > 0.3f) { buildingToInstantiate = 2; }
+            if (thisPixel.g > 0.3f) { buildingToInstantiate = 2; }
+            if (thisPixel.b > 0.3f) { buildingToInstantiate = 6; }
 
 
             
@@ -155,6 +155,8 @@ public class StaticGeneration : EditorWindow
             newCityBlock.transform.position += newCityBlock.transform.right * distanceFromCenter;
             //set the parent to the instantiateParent so we don't croud the scene
             newCityBlock.transform.parent = instantiateParent.transform;
+
+            assignMaterialToBuilding(newCityBlock);
 
 
         }
@@ -168,6 +170,34 @@ public class StaticGeneration : EditorWindow
         newWall.transform.parent = instantiateParent.transform;
         
 
+    }
+
+    //makes the buildings rainbow
+    private static void assignMaterialToBuilding(GameObject building)
+    {
+     
+        /*
+
+        //Set Texture on the material
+        //myNewMaterial.SetTexture("_MainTex", myTexture);
+        try
+        {
+            //Find the Standard Shader
+            Material myNewMaterial = building.GetComponent<MeshRenderer>().sharedMaterials[1];
+            //myNewMaterial.SetFloat("_Metallic", 1);
+            //myNewMaterial.SetFloat("_Glossiness", 1);
+            myNewMaterial.SetColor("_EmissionColor", new Color(UnityEngine.Random.Range(0, 1), UnityEngine.Random.Range(0, 1), UnityEngine.Random.Range(0, 1)));
+
+        }
+        catch(Exception e)
+        {
+            Material myNewMaterial = building.transform.Find("Body").GetComponent<MeshRenderer>().materials[1];
+            myNewMaterial.SetColor("_EmissionColor", new Color(UnityEngine.Random.Range(0, 1), UnityEngine.Random.Range(0, 1), UnityEngine.Random.Range(0, 1)));
+
+
+        }
+        //building.transform.GetComponent<Renderer>().shareMaterial
+        */
     }
 
     /**

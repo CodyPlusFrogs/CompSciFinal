@@ -11,6 +11,8 @@ public class GameManager : MonoBehaviour
     //the health
     public Scrollbar healthScrollBar;
 
+    public Material buildingWindows;
+
     //health of the player
     public static float playerHealth = 1;
 
@@ -18,6 +20,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         playerHealth = 1;
+        startTime = Time.time;
     }
     // Update is called once per frame
     void Update() {
@@ -25,6 +28,20 @@ public class GameManager : MonoBehaviour
         updateHealthScrollBar();
         //see if the player is dead or not
         seeIfPlayerDead();
+
+        rainBowBuildings();
+
+    }
+
+    float startTime = 0;
+    private void rainBowBuildings()
+    {
+        float percent = (Time.time - startTime) / 60;
+        if(percent > 1)
+        {
+            startTime = Time.time;
+        }
+        buildingWindows.SetColor("_EmissionColor", Color.HSVToRGB(percent, 1, 1)); 
     }
 
     //whatever player health is we set to the scrollbar
