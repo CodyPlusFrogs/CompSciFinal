@@ -91,11 +91,15 @@ public class StaticGeneration : EditorWindow
                 {
                     //compute the heading toward the end transform
                     Vector3 heading = secondLerp - firstLerp;
-                    
-                    InstantiateRow(splineLerp, Quaternion.LookRotation(heading, 
+
+                    if (!lineEndTransform.name.Equals("Break"))
+                    {
+                        InstantiateRow(splineLerp, Quaternion.LookRotation(heading,
                         Vector3.Lerp((lineStartTransform.up + lineEndTransform.up) / 2,
                         (lineEndTransform.up + nextLineEndTransform.up) / 2, percent)),
                         instantiateParent);
+                    }
+                    
 
                     //move 1 up in the image we are instanting from
                     totalYProgress++;

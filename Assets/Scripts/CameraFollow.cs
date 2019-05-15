@@ -19,7 +19,6 @@ public class CameraFollow : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-
         if(followState == followingStates.followingPlayer)
         {
             PlayerControl playerControlScript = player.GetComponent<PlayerControl>();

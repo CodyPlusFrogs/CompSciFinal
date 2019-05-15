@@ -115,6 +115,7 @@
     <Compile Include="Assets\Scripts\laserScript.cs" />
     <Compile Include="Assets\Scripts\PlayerControl.cs" />
     <Compile Include="Assets\Scripts\RingGeneration.cs" />
+    <Compile Include="Assets\Scripts\StateMachine.cs" />
     <Compile Include="Assets\StaticGeneration.cs" />
     <None Include="Assets\PostProcessing\Resources\Shaders\DepthOfField.shader" />
     <None Include="Assets\PostProcessing\Resources\Shaders\MotionBlur.cginc" />

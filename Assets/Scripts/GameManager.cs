@@ -7,7 +7,15 @@ using UnityEngine.UI;
 using UnityEngine.UIElements;
 
 public class GameManager : MonoBehaviour
-{ 
+{
+
+    //the current state
+    public static gameStates gameState = gameStates.playingLevel1;
+    public enum gameStates
+    {
+        playingLevel1,
+        dead
+    }
     //the health
     public Scrollbar healthScrollBar;
 
@@ -62,10 +70,13 @@ public class GameManager : MonoBehaviour
     //sees if the player has less than 0 health and manages that
     private void seeIfPlayerDead()
     {
-        if (playerHealth < 0 && SceneManager.GetActiveScene().name.Equals("Level1Scene"))
+        if (PlayerControl.playerState == PlayerControl.playerStates.dead &&
+            gameState != gameStates.dead)
         {
             //SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene()); 
-            SceneManager.LoadScene("DeathScene", LoadSceneMode.Single);
+            SceneManager.LoadScene("DeathScene", LoadSceneMode.Additive);
+            gameState = gameStates.dead;//die
+
         }
     }
 

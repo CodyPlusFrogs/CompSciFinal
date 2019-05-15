@@ -11,5 +11,6 @@ public class KillPlayerWhenHit : MonoBehaviour
     {
         mainPlayerControl.killPlayer();
         //meme
+        GameManager.playerHealth = 0;
     }
 }

@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerControl : MonoBehaviour {
+public class PlayerControl : StateMachine {
     Vector3 offsetCam;
     Quaternion offsetCamRot;
 
@@ -22,6 +22,33 @@ public class PlayerControl : MonoBehaviour {
 
 
 
+
+    class aliveState : State
+    {
+        public override void doEveryLoop()
+        {
+
+        }
+
+        public override bool shouldExit()
+        {
+
+        }
+    }
+
+    class deadState : State
+    {
+        public override void doEveryLoop()
+        {
+
+        }
+
+        public override bool shouldExit()
+        {
+
+        }
+    }
+
     //player state data
     public static playerStates playerState = playerStates.alive;
     public enum playerStates
@@ -37,7 +64,12 @@ public class PlayerControl : MonoBehaviour {
 
     
     // Update is called once per frame
-    void FixedUpdate () {
+    new void FixedUpdate () {
+        //update the state machine
+        base.FixedUpdate();
+
+
+
         savedLocations.Add(new LocationData(transform.GetChild(0).position, transform.GetChild(0).rotation));
 
         if (savedLocations.Count > 4)
